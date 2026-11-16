@@ -1,158 +1,170 @@
 <div align="center">
 
-<img src="android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="UnInsta Logo" width="120" height="120" style="border-radius: 24px"/>
+<img src="android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="UnInsta Logo" width="112" height="112" />
 
-<h1>UnInsta</h1>
+# UnInsta
 
-<h3>An Instagram follower analyzer that stays on your phone, not in the cloud</h3>
+[![Platform](https://img.shields.io/badge/Platform-Android-grey.svg?style=flat-square)](https://android.com) [![Release](https://img.shields.io/badge/Release-v1.0.1-blue.svg?style=flat-square)](https://github.com/mina-android/UnInsta/releases) [![License](https://img.shields.io/badge/License-GPL--3.0-black.svg?style=flat-square)](LICENSE) [![Build](https://img.shields.io/badge/Build-Passing-brightgreen.svg?style=flat-square)](https://github.com/mina-android/UnInsta/actions)
 
-[![Platform](https://img.shields.io/badge/Platform-Flutter%20%7C%20Android%20%7C%20iOS%20%7C%20Desktop-3DDC84?logo=flutter&logoColor=white)](https://flutter.dev) [![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen)](changelog.md) [![License](https://img.shields.io/badge/License-GPL--3.0-blue)](LICENSE)
-
-UnInsta is a simple, private app that helps anyone analyze their Instagram follower dynamics with complete peace of mind.  
-It works completely offline, with no sign-ups or ads, and your personal Instagram data never leaves your device.
-
-[**Download**](#-download) · [**Features**](#-what-you-can-do) · [**Getting Started**](#-getting-started) · [**FAQ**](#-questions-you-might-have) · [**For Developers**](#-for-developers)
+<p align="center">
+  A local-first, privacy-focused follower and relationship analyzer for Instagram that parses official account data archives on your device without requiring passwords or cloud access.
+</p>
 
 </div>
 
 ---
 
-## ✨ What you can do
+## Navigation
 
-- **🚫 Don't Follow Back**: Instantly spot accounts you follow that don't follow you back, and open their profiles in one tap.
-- **⏳ Pending Follow Requests**: View all outbound follow requests you sent that are still waiting to be accepted.
-- **⭐ Fans**: Discover who follows your profile even though you don't follow them back.
-- **🤝 Mutual Connections**: Easily see all accounts with two-way, reciprocal following.
-- **📉 Who Unfollowed Me**: Compare consecutive exports to see exactly which accounts unfollowed you over time.
-- **🚪 Recently Unfollowed by Me**: Review the accounts you recently unfollowed, combining snapshot diffs with Instagram's logs.
-- **🖼️ 3-Layer Resilient Avatars**: Seamless profile picture resolution cascading from web profile endpoints to public proxies, down to offline gradient monograms.
-- **💾 Automatic Session Restoration**: Re-open the app and pick up right where you left off without re-importing the ZIP file.
-- **🔍 Smart Filters & Sorting**: Narrow down accounts with date chips (`< 30 Days`, `< 6 Months`, `> 1 Year`), mutual toggles, and duration sorting.
+[Features](#features) &bull; [Downloads](#downloads) &bull; [Self Building & Local Setup](#self-building--local-setup) &bull; [Frequently Asked Questions](#frequently-asked-questions) &bull; [Contribution](#contribution) &bull; [About the Developer](#about-the-developer) &bull; [Donate](#donate) &bull; [License](#license)
 
 ---
 
-## 🧭 Getting started
+## Features
 
-1. **Request your data from Instagram**:
-   - Open **Instagram** $\rightarrow$ **Settings** $\rightarrow$ **Accounts Center**
-   - Tap **Your information and permissions** $\rightarrow$ **Download your information**
-   - Choose **Download or transfer information**, pick your profile, select **Some of your information**, and choose **Followers and following**
-   - Select **Download to device**, format **JSON** or **HTML**, date range **All time**, and tap **Create files**
-2. **Download the ZIP**: When Instagram sends the notification that your download is ready, save the `.zip` archive to your device.
-3. **Open UnInsta**: Tap **Select Instagram .zip File** and choose your downloaded archive.
-4. **Explore your insights**: Flip through tabs, filter by date, compare who unfollowed you, and review your network securely!
+### Core Capabilities
 
----
+- **Non-Reciprocal Follower Detection**: Identifies accounts you follow that do not follow your account back, with one-tap deep links opening target profiles directly in the Instagram client.
+- **Pending Outbound Requests**: Lists pending follow requests you have previously sent that remain unapproved.
+- **Fans and Reciprocal Connections**: Separates users who follow you into mutual connections and one-way followers whom you do not follow back.
+- **Relationship Categorization**: Displays dedicated lists for Close Friends, restricted profiles, blocked accounts, and recent unfollow history.
+- **Local Archive Parsing**: Directly ingests standard Instagram data export files (`ZIP` or extracted `JSON` directories) without requiring session cookies or automated web scraping.
+- **Filter and Search Tools**: Instant search filtering by username or profile link with sorting by interaction date and alphabet.
 
-## 📲 Download
+### Architecture & Data Handling
 
-1. Head over to the [**Releases page**](https://github.com/minaa/UnInsta/releases)
-2. Grab the latest APK. If you're not sure which one, pick the file ending in `arm64-v8a`, since most modern phones use that
-3. Open it, and if Android asks, allow installs from unknown sources
-
-It runs on Android 5.0 (Lollipop) or newer and takes up about 18 MB.
+- **Zero Credential Requirement**: The application never prompts for your Instagram password, two-factor codes, or account credentials. All insights are derived strictly from your official data export.
+- **Complete Privacy & Local Execution**: Data parsing and persistence take place entirely within the local sandbox on your physical device. No telemetry, analytics, or user identifiers are transmitted over the network.
+- **No Rate Limits or Account Ban Risks**: Because the tool operates purely on downloaded export archives rather than live background scraping bots, your account is protected from platform rate limits and security flags.
 
 ---
 
-## 🔒 Your privacy
+## Downloads
 
-I take this seriously, so here's the plain version:
+Official release binaries are available under the [GitHub Releases](https://github.com/mina-android/UnInsta/releases) section.
 
-- **Everything stays on your phone**: All ZIP decompression, HTML/JSON extraction, and mathematical set comparisons take place locally inside a Dart background isolate.
-- **No accounts, no passwords, no tokens**: You never enter your Instagram password or generate access tokens. Your account is completely safe from suspicious logins and bans.
-- **No tracking or third-party cloud analytics**: No sign-up screens, no telemetry, no analytics SDKs, and zero cloud databases pinging external servers.
-- **Network requests are strictly limited**: The only optional network calls are read-only public avatar image fetches to display profile pictures, with a 100% offline monogram fallback when disconnected.
-
----
-
-## ❓ Questions you might have
-
-**Do I need an internet connection to use it?**  
-No. UnInsta works completely offline. You can analyze your Instagram archive in airplane mode. The only thing internet is used for is optionally loading public profile pictures.
-
-**Is it safe? Can Instagram ban my account?**  
-Yes, it is 100% safe. Traditional follower apps require your Instagram login and passwords, which violates Instagram's terms and triggers account flags. UnInsta never asks for your credentials—it parses official data exports provided directly to you by Meta.
-
-**Do I have to re-select my ZIP file every time I open the app?**  
-No! Starting with version 1.1.0, UnInsta automatically saves your parsed analysis to local storage. Whenever you re-open the app, your previous analysis is restored immediately.
-
-**What happens when I download a new export next month?**  
-Simply tap **Import New ZIP** (or the folder icon). UnInsta will analyze the new file, automatically compare it against your previous snapshot, and tell you who unfollowed you and who followed you since your last export.
-
-**Does it support both HTML and JSON exports?**  
-Yes! UnInsta automatically detects whether your ZIP file contains HTML tables or Meta's JSON schema and parses both seamlessly.
+| Platform | Architecture | Package Type | Download Link | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Android** | arm64-v8a | `.apk` | [Download (v1.0.1)](https://github.com/mina-android/UnInsta/releases/latest) | 64-bit devices (recommended) |
+| **Android** | armeabi-v7a | `.apk` | [Download (v1.0.1)](https://github.com/mina-android/UnInsta/releases/latest) | 32-bit older hardware |
+| **Android** | x86_64 | `.apk` | [Download (v1.0.1)](https://github.com/mina-android/UnInsta/releases/latest) | Android x86 emulators |
+| **Android** | Universal | `.apk` | [Download (v1.0.1)](https://github.com/mina-android/UnInsta/releases/latest) | Combined installer |
 
 ---
 
-## 💬 Say hello
+## Self Building & Local Setup
 
-- Ran into a bug or want a new feature? [Open an issue](https://github.com/minaa/UnInsta/issues)
-- Just want to chat or give feedback? Reach me via GitHub Issues or discussions
-- If the app has made your life a little easier, a ⭐ on the repo would make my day
+### 1. Prerequisites
 
----
+Ensure your workstation has the following toolchains installed:
 
-## 🛠 For developers
+- **Flutter SDK**: `3.22.0` or higher
+- **Dart SDK**: `3.4.0` or higher
+- **Android SDK**: API level `34`
+- **Java Development Kit**: JDK `17`
+- **Git**: `2.30+`
 
-<details>
-<summary><strong>What it's built with</strong></summary>
-
-- **Flutter & Dart**: Flutter 3.12+ / Dart 3.12+ targeting Android, iOS, Windows, and macOS.
-- **Archive Engine**: `archive: ^4.3.0` decoding `.zip` exports inside a background `compute()` isolate to guarantee fluid 60fps UI.
-- **Persistence**: `shared_preferences: ^2.5.5` storing snapshot comparison history and serialized `AnalysisResult` JSON sessions.
-- **3-Layer Avatar Resolution**: Cascade from Instagram Web Profile API (`api/v1/users/web_profile_info/`) $\rightarrow$ Public Proxy Mirror (`ui-avatars.com`) $\rightarrow$ Deterministic high-contrast gradient initials.
-- **System Architecture**: Complete architecture breakdown and data flow diagrams are documented in [`structure.md`](structure.md), with AI agent conventions in [`ai_instructions.md`](ai_instructions.md) and version history in [`changelog.md`](changelog.md).
-
-</details>
-
-<details>
-<summary><strong>Run it yourself</strong></summary>
-
-You'll need Flutter (3.12+) and Dart SDK. Then:
+### 2. Repository Setup
 
 ```bash
-git clone https://github.com/minaa/UnInsta.git
+# Clone the repository
+git clone https://github.com/mina-android/UnInsta.git
+
+# Navigate into the project folder
 cd UnInsta
+
+# Verify environment
+flutter doctor
+```
+
+### 3. Dependency Installation
+
+```bash
+# Fetch dependencies
 flutter pub get
-flutter run
 ```
 
-To build release split-per-ABI APKs:
+### 4. Build Compilation
+
 ```bash
-flutter build apk --release --split-per-abi
+# Build release APK
+flutter build apk --split-per-abi --release
 ```
 
-To run tests and code analyzer:
+Output APK files are placed in `build/app/outputs/flutter-apk/`.
+
+### 5. Running the Application Locally
+
 ```bash
-flutter test
-flutter analyze
+flutter run --release
 ```
-
-</details>
-
-<details>
-<summary><strong>Want to help out?</strong></summary>
-
-Contributions are welcome! Here's how:
-
-1. Fork the repo
-2. Create a branch: `git checkout -b feature/my-new-feature`
-3. Make your changes and push them
-4. Open a Pull Request and tell me what you changed
-
-Please run `flutter test` and `flutter analyze` before opening a pull request to keep code quality clean.
-
-</details>
 
 ---
 
-## 📄 License
+## Frequently Asked Questions
 
-GNU General Public License v3.0. Have a look at [LICENSE](LICENSE) for the details.  
-Copyright © 2026 [Mina Android](https://github.com/mina-android)
+#### How do I obtain my Instagram data export archive?
+1. Open the Instagram app and navigate to **Settings and privacy** > **Accounts Center** > **Your information and permissions** > **Download your information**.
+2. Select **Download or transfer information**, choose your profile, and select **Some of your information**.
+3. Under Connections, choose **Followers and following**.
+4. Set the format to **JSON** and date range to **All time**, then request the download.
+5. Once Meta notifies you the archive is ready, download the `.zip` file and select it directly in UnInsta.
+
+#### Is my Instagram account safe from bans or suspensions?
+Yes. UnInsta never connects to Instagram servers using your credentials and performs no automated scraping. It simply parses the official JSON records that Instagram provides to you upon request, eliminating account suspension risks.
+
+#### Do I need to re-download the archive every time?
+Your connection state reflects the exact point in time when the export was generated by Meta. To update your follower metrics, request and load a fresh archive export.
+
+---
+
+## Contribution
+
+Contributions that improve JSON schema compatibility, speed up parser routines, or enhance the UI are welcome.
+
+### Contribution Process
+
+1. Verify that your proposal or defect is not already discussed in open GitHub Issues.
+2. For format changes or archive support updates, open a ticket with sample anonymized JSON snippets.
+3. Verify test passes:
+   ```bash
+   flutter analyze
+   flutter test
+   ```
+4. Submit a Pull Request targeting `main`.
+
+---
+
+## About the Developer
+
+This project is authored and maintained by **mina-android**, building privacy-preserving utilities and open-source Android tools.
+
+- **Developer Portfolio**: [portfolio.minaashraf285.workers.dev](https://portfolio.minaashraf285.workers.dev/)
+- **GitHub Profile**: [github.com/mina-android](https://github.com/mina-android)
+- **Issue Tracker**: [github.com/mina-android/UnInsta/issues](https://github.com/mina-android/UnInsta/issues)
+
+---
+
+## Donate
+
+If UnInsta provides you with transparent account analytics while keeping your credentials private, you can support ongoing maintenance:
+
+- **PayPal**: [paypal.me/minaashraf285](https://paypal.me/minaashraf285)
+- **GitHub Sponsors**: [github.com/sponsors/mina-android](https://github.com/sponsors/mina-android)
+
+---
+
+## License
+
+Distributed under the **GNU General Public License v3.0**. See the [`LICENSE`](LICENSE) file in the root directory for legal text.
+
+```text
+Copyright (c) 2026 mina-android
+Licensed under the GNU General Public License v3.0.
+```
+
+---
 
 <div align="center">
-
-Made with ❤️ for anyone who wants privacy-friendly Instagram insights · [**See my other projects**](https://github.com/mina-android)
-
+  <sub>UnInsta &bull; Maintained by mina-android &bull; Private, offline Instagram follower analysis.</sub>
 </div>
