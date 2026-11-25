@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.1] - 2026-10-20
 
+### Changed
+- **README & GitHub Releases**: Removed the Frequently Asked Questions section and navigation link from `README.md`, standardized shields.io badges (`style=flat`) and pinned Developer/Donate badge bars to match `README_TEMPLATE.md`, and aligned GitHub release notes (`v1.0.1`) with the `IT-Box` release note format.
+
 ### Added
 - **About Developer & Application Info Modal**:
   - Added dedicated info ("i") icon button in the AppBar.
